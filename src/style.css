@@ -94,3 +94,73 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* 
+  1.1 En modo mobile, no queremos que se vean los logos de Vite ni
+  TS, solo queremos ver una lista de libros.
+
+  Para pantallas con un ancho máximo de 768px
+  
+  inspeccione los elementos y observe que el div de logos y del boton de cuenta estan dentro del div con clase first-div
+
+  entonces, utilizo un media query para aplicar un style a esa clase solo cuando la pantaña es menor a 768px, que es el 
+  tamaño promedio para tablets mostrado en las devtools
+
+  */
+@media only screen and (max-width: 768px) {
+  .first-div {
+  visibility: hidden;  /** hidden para no mostrar el contenido del div*/
+  display: none; /* none para que el div y su contenido no ocupen espacio en la pagina*/
+  }
+}
+
+
+/* aplico estilos para desktop */
+@media only screen and (min-width: 769px) {
+
+  /*
+  1.2 En modo desktop, queremos ver los logos en una columna a la
+  izquierda de la pantalla y los libros a la derecha de la pantalla.
+
+  inspencione los elementos y observe que el div de los logos (.first-div) y el div de los libros (.second-div)
+  son contenidos por un div padre (.app)
+
+  entonces solo aplico un estilo flex: 1 con direccion row para que sus hijos se posiciones uno al lado del otro
+
+  ademas agrego estilo a .first-div flex para que este se vea mejor en forma de columna y por ultimo agrego estilo al h1
+  en .first div para que su tamaño quede bien dentro de la columna
+
+  */
+  .app {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+  }
+
+  .first-div {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    max-width: 25%;
+  }
+
+  .first-div h1{
+    font-size: calc( 2rem + 1vmax );
+  }
+
+  /*
+  1.3 En modo desktop, queremos que por fila se puedan mostrar al
+  menos dos libros, pero en modo mobile si sea una sola lista
+  vertical.
+
+  observo que solo necesito dividir .second-div en 2 columnas en vez de una, entonces busco como hacerlo en grid.
+  una solucion bastante simple, mientras mas autos tiene grid-template-columns, mas columnas se generan
+  */
+
+  /**https://stackoverflow.com/questions/67698930/how-to-make-a-2-column-grid-in-html*/
+  .second-div {
+    display: grid;
+    grid-template-columns: auto auto;
+  }
+}
+
