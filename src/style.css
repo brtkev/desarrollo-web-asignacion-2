@@ -164,3 +164,36 @@ button:focus-visible {
   }
 }
 
+
+
+/**
+2.2 para darle el estilo requerido, convertimos .card-body en flex
+*/
+.card-body {
+  display: flex;
+  flex: 1;
+}
+
+/* convertimos card-properties en flex column para que el titulo se mantenga encima de los autores*/
+.card-properties {
+  padding: 5px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+
+/**
+ y le damos a ambos hijos de .card-body, es decir card-image y card-properties 50% del espacio dentro de card-body
+ de esta manera de mantendran de lado a lado
+*/
+/* aplico estilos para desktop */
+@media only screen and (min-width: 769px) {
+  .card-image {
+    width: 50%;
+  }
+
+  .card-properties {
+    width: 50%;
+  }
+}
